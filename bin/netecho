@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+var m = require('../index')
+var dgram = require('dgram')
+var argv = require('yargs').usage('netecho')
+                           .wrap(null)
+                           .argv

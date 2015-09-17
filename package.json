@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Jianru-Lin/netecho/issues"
   },
-  "homepage": "https://github.com/Jianru-Lin/netecho#readme"
+  "homepage": "https://github.com/Jianru-Lin/netecho#readme",
+  "dependencies": {
+    "yargs": "^3.25.0"
+  }
 }
