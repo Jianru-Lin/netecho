@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+var m = require('../index')
+var yargs = require('yargs')
+var argv = yargs.usage('netecho-test <command> [options]')
+                .command('udp', 'test remote udp echo server', udp_command)
+                .wrap(null)
+                .argv
+
+var command = argv._[0]
+if (!command) {
+   yargs.showHelp()
+}
+
+function udp_command(yargs) {
+   argv = yargs.option('p', {alias: 'port', demand: true})
+               .option('h', {alias: 'host', demand: true})
+               .usage('netecho-test udp -h <host> -p <port>')
+               .help('help')
+               .argv
+
+   if (!argv.port || !argv.host) {
+      return
+   }
+
+   var opt = {
+      port: argv.port,
+      host: argv.host
+   }
+   m.test_udp_echo_server(opt)
+}
