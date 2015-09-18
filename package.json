@@ -1,22 +1,26 @@
 {
-  "name": "netecho",
-  "version": "1.0.0",
-  "description": "network test utility.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Jianru-Lin/netecho.git"
-  },
-  "author": "Jianru Lin",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Jianru-Lin/netecho/issues"
-  },
-  "homepage": "https://github.com/Jianru-Lin/netecho#readme",
-  "dependencies": {
-    "yargs": "^3.25.0"
-  }
+    "name": "netecho",
+    "version": "1.1.0",
+    "description": "network test utility.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Jianru-Lin/netecho.git"
+    },
+    "author": "Jianru Lin",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Jianru-Lin/netecho/issues"
+    },
+    "homepage": "https://github.com/Jianru-Lin/netecho#readme",
+    "dependencies": {
+        "yargs": "^3.25.0"
+    },
+    "bin": {
+        "netecho": "bin/netecho",
+        "netecho-test": "bin/netecho-test"
+    }
 }
