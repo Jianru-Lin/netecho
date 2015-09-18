@@ -4,6 +4,7 @@ var m = require('../index')
 var yargs = require('yargs')
 var argv = yargs.usage('netecho <command> [options]')
                 .command('udp', 'start an udp echo server', udp_command)
+                .command('tcp', 'start an tcp echo server', tcp_command)
                 .wrap(null)
                 .argv
 
@@ -28,4 +29,22 @@ function udp_command(yargs) {
       host: argv.host
    }
    m.udp_echo_server(opt)
+}
+
+function tcp_command(yargs) {
+   argv = yargs.option('p', {alias: 'port', demand: true})
+               .option('h', {alias: 'host', demand: true})
+               .usage('netecho tcp -h <host> -p <port>')
+               .help('help')
+               .argv
+
+   if (!argv.port || !argv.host) {
+      return
+   }
+
+   var opt = {
+      port: argv.port,
+      host: argv.host
+   }
+   m.tcp_echo_server(opt)
 }
