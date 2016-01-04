@@ -16,7 +16,8 @@ if (!command) {
 function udp_command(yargs) {
    argv = yargs.option('p', {alias: 'port', demand: true})
                .option('h', {alias: 'host', demand: true})
-               .usage('netecho udp -h <host> -p <port>')
+               .option('m', {alias: 'mode', demand: false})
+               .usage('netecho udp -h <host> -p <port> [-m <normal|random>]')
                .help('help')
                .argv
 
@@ -24,9 +25,23 @@ function udp_command(yargs) {
       return
    }
 
+   var mode = 'normal'
+   if (argv.m) {
+      if (/^normal$/i.test(argv.m)) {
+        mode = 'normal'
+      }
+      else if (/^random$/i.test(argv.m)) {
+        mode = 'random'
+      }
+      else {
+        return
+      }
+   }
+
    var opt = {
       port: argv.port,
-      host: argv.host
+      host: argv.host,
+      mode: argv.mode
    }
    m.udp_echo_server(opt)
 }

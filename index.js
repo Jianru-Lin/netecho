@@ -15,10 +15,31 @@ exports.udp_echo_server = function(opt) {
 
     s.on('message', function(msg, rinfo) {
         console.log('message from ip=' + rinfo.address + ' port=' + rinfo.port)
-        s.send(msg, 0, msg.length, rinfo.port, rinfo.address)
+        if (opt.mode === 'normal') {
+            s.send(msg, 0, msg.length, rinfo.port, rinfo.address)            
+        }
+        else if (opt.mode === 'random') {
+            send_with_random_socket(msg, rinfo.port, rinfo.address)
+        }
     })
 
     s.bind(opt.port, opt.host)
+
+    function send_with_random_socket(msg, port, address) {debugger
+        var rs = dgram.createSocket('udp4')
+        
+        rs.on('listening', function() {debugger
+            rs.send(msg, 0, msg.length, port, address, function() {
+                rs.close()
+            })
+        })
+
+        rs.on('error', function(err) {
+            console.log('[send_with_random_socket] ' + err.toString())
+        })
+
+        rs.bind() // on random port
+    }
 }
 
 exports.test_udp_echo_server = function(opt) {
