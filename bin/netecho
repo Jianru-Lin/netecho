@@ -26,6 +26,7 @@ function udp_command(yargs) {
    }
 
    var mode = 'normal'
+
    if (argv.m) {
       if (/^normal$/i.test(argv.m)) {
         mode = 'normal'
@@ -41,7 +42,7 @@ function udp_command(yargs) {
    var opt = {
       port: argv.port,
       host: argv.host,
-      mode: argv.mode
+      mode: mode
    }
    m.udp_echo_server(opt)
 }

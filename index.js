@@ -10,7 +10,7 @@ exports.udp_echo_server = function(opt) {
 
     s.on('listening', function() {
         var address = s.address()
-        console.log('listening ip=' + address.address + ' port=' + address.port)
+        console.log('listening ip=' + address.address + ' port=' + address.port + ' mode=' + opt.mode)
     })
 
     s.on('message', function(msg, rinfo) {
@@ -20,6 +20,9 @@ exports.udp_echo_server = function(opt) {
         }
         else if (opt.mode === 'random') {
             send_with_random_socket(msg, rinfo.port, rinfo.address)
+        }
+        else {
+            throw new Error('unknown mode: ' + opt.mode)
         }
     })
 
